@@ -1,0 +1,131 @@
+<!--
+  To change this template, choose Tools | Templates
+  and open the template in the editor.
+-->
+
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="comboboxList"%>
+<html>
+<head>
+<meta name="layout" content="m-melanin-layout" />
+<title>Danh sách danh sách Blacklist</title>
+</head>
+<body>
+	<div id="m-melanin-tab-header">
+		<div id="m-melanin-tab-header-inner">
+			<div id="m-melanin-tab-actions">
+				<button class="btn small primary m-melanin-toggle-side-bar"
+					name="m-test-button-3" value="Toggle sidebar">Toggle
+					sidebar</button>
+			</div>
+			<g:render plugin="melanin" template="/templates/m-melanin-breadcrum"
+				model="${[
+                          items:[[href:createLink(controller:'opRisk',action:'dashboard'),title:'home',label:'Home'],
+                                 [href:createLink(controller:'opError',action:'reportList'),title:'Blacklist quản lý danh sách',label:'Blacklist quản lý danh sách']]
+                  ]}" />
+
+			<div class="clear"></div>
+		</div>
+		<%-- Để gọi đến dialog --%>
+		<div id="m-melanin-left-sidebar">
+			<g:render template="blacklistSidebar" />
+		</div>
+	</div>
+	<div id="m-melanin-main-content">
+		<%def today = new Date();
+            	today.setMonth(today.month-1);
+            %>
+		<g:form name="dialogTruyVanQLDS" id="dialogTruyVanQLDS"	class="form float-left" 
+						action="detailQLDanhSach">
+			<g:if test="${flash.message}">
+				<div id="flash-message" class="message info">
+					${flash.message}
+				</div>
+			</g:if>
+			<g:render template="../blacklist/dialogTruyVanQLDS" />
+			<g:hiddenField name="search" value="search" />
+		</g:form>
+		<%--BEGIN GIRD KẾT QUẢ LỌC --%>
+		<table class="sortDatatablesExport">
+			<thead>
+				<tr>
+					<th class="center">NHCD/Khối nhập</th>
+					<th class="center">Đơn vị nhập</th>
+					<th class="center">User Nhập</th>
+				</tr>
+
+			</thead>
+			<tbody>
+			
+				<g:each in="${dsBlacklist}" var="p" status="i">
+					<tr>
+						<td class="" style="text-align: left">
+							${(p.donvi_1)?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${(p.donvi_2)?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${(p.donvi_3)?.name}
+						</td>
+					</tr>
+				</g:each>
+			
+			<%--<g:if test="${dsTsbdBlacklist}">
+				<g:each in="${dsTsbdBlacklist}" var="p" status="i">
+					<tr>
+						<td class="" style="text-align: left">
+							${p.donvi_1?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${p.donvi_2?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${p.donvi_3?.name}
+						</td>
+					</tr>
+				</g:each>
+			</g:if>
+			--%><%--<g:if test="${dsPnBlacklist}">
+				<g:each in="${dsPnBlacklist}" var="p" status="i">
+					<tr>
+						<td class="" style="text-align: left">
+							${p.donvi_1?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${p.donvi_2?.name}
+						</td>
+						<td class="" style="text-align: left">
+							${p.donvi_3?.name}
+						</td>
+					</tr>
+				</g:each>
+			</g:if>
+			--%></tbody>
+		</table>
+		<%--END GIRD KẾT QUẢ LỌC --%>
+	</div>
+	<script class="jsbin"
+		src="http://datatables.net/download/build/jquery.dataTables.nightly.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			set_active_tab('blacklist-management');//top
+			$("#blacklist-quanly-management").closest('li').addClass('active');//leftMenu
+			set_side_bar(true); // ẩn hiển thanh menu trái
+
+		});
+		 $("select[name=donvi1]").change(function(){
+	            $("select[name=donvi2]").html("");
+	            if ($(this).val()){
+	                $.post('${createLink(controller:'unitDepartment',action:'getChildNodes')}/donvi1',
+	                        $("form[name=dialogTruyVanQLDS]").serialize(),function(data){
+	                            $("select[name=donvi2]").html(data);
+	                        });
+	            } else{
+	                $("select[name=donvi2]").html("");
+	            }
+	            $("select[name=donvi2]").change()
+		 });
+	</script>
+</body>
+</html>

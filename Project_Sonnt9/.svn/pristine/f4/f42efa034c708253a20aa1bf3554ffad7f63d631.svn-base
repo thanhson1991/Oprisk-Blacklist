@@ -1,0 +1,1 @@
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;

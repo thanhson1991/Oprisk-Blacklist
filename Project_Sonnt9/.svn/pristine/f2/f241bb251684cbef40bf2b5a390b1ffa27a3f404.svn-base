@@ -1,0 +1,42 @@
+[
+{
+"id":"jshist",
+"title":"A little history of JavaScript",
+"description":"Mainly, showing the emergence of different JS libraries.",
+"focus_date":"1996-07-01 12:00:00",
+"timezone":"-07:00",
+"initial_zoom":"37",
+"events":[
+
+{
+"id":"jsconf2011",
+"title": "JS Conf 2011",
+"description": "Portland, Oregon, at the Portland Art Museum. Highlights included Andrew Dupont's talk, 'Everything is Permitted: Extending Built-ins', doughnuts, and more.",
+"startdate": "2011-05-02 08:00:00",
+"enddate": "2011-05-03 18:00:00",
+"link":"http://2011.jsconf.us/",
+"importance":"40",
+"icon":"star_green.png",
+"map":{
+	"label":"JSConf 2011", 
+	"latlong":"45.51655690309638,-122.68299579620361",
+	"markers":[
+		{
+		"latlong":"45.51655690309638, -122.68299579620361",
+		"icon":"http://timeglider.com/jquery/img/jsconf.png",
+		"title":"Portland Art Museum",
+		"zIndex":99
+		 }
+		]
+	}
+}
+],
+"legend": [
+   {"title":"libraries", "icon":"triangle_green.png"},
+   {"title":"engines", "icon":"square_gray.png"},
+   {"title":"origins", "icon":"flag_green.png"},
+   {"title":"conferences", "icon":"star_green.png"}
+]
+         
+}
+]
