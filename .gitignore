@@ -31,3 +31,8 @@
 
 # "temporary" build files
 /target
+/03.11.OpsRisk/Tags
+/03.11.OpsRisk/Trunk/40 - Source oprisk/web-app
+/03.11.OpsRisk/Trunk/40 - Source oprisk/target
+/03.11.OpsRisk/Trunk/40 - Source oprisk/target-eclipse
+/03.11.OpsRisk/.svn
